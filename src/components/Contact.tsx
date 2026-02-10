@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, MessageCircle } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import { supabase } from "@/integrations/supabase/client";
 
 const WHATSAPP_URL = "https://wa.me/919606185669?text=Hi%20Pixelora%20Labs%2C%20I%27d%20like%20to%20discuss%20a%20project.";
 
@@ -13,14 +14,30 @@ const Contact = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+
+    const formData = new FormData(e.currentTarget);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    try {
+      const { data, error } = await supabase.functions.invoke("contact-form", {
+        body: { name, email, message },
+      });
+
+      if (error) throw error;
+
       toast({ title: "Message sent!", description: "We'll get back to you within 24 hours." });
       (e.target as HTMLFormElement).reset();
-    }, 800);
+    } catch (err) {
+      console.error("Contact form error:", err);
+      toast({ title: "Something went wrong", description: "Please try again or reach out via WhatsApp.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -44,15 +61,15 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Your name" required className="mt-1.5" />
+                <Input id="name" name="name" placeholder="Your name" required className="mt-1.5" />
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="you@example.com" required className="mt-1.5" />
+                <Input id="email" name="email" type="email" placeholder="you@example.com" required className="mt-1.5" />
               </div>
               <div>
                 <Label htmlFor="message">Message</Label>
-                <Textarea id="message" placeholder="Tell us about your project..." rows={5} required className="mt-1.5" />
+                <Textarea id="message" name="message" placeholder="Tell us about your project..." rows={5} required className="mt-1.5" />
               </div>
               <Button type="submit" size="lg" disabled={loading} className="w-full transition-all duration-300 active:scale-[0.98] sm:w-auto">
                 {loading ? "Sending…" : "Send Message"}
