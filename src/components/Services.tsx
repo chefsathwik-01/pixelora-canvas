@@ -1,21 +1,22 @@
-import { Globe, Target, Zap } from "lucide-react";
+import { Globe, Target, Zap, Bot, Cpu } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
     icon: Globe,
-    title: "Business Websites",
-    desc: "Professional, mobile‑ready websites that clearly communicate your value and guide visitors to take action.",
+    title: "Website Design & Development",
+    desc: "Business-focused websites that are fast, responsive, SEO-ready, and built for trust, clarity, and conversions.",
   },
   {
-    icon: Target,
-    title: "Conversion‑Focused Design",
-    desc: "Every layout decision is intentional — designed to turn traffic into leads, bookings, or sales.",
+    icon: Bot,
+    title: "AI Chatbots for Business",
+    desc: "Handle FAQs, qualify leads, and support customers — integrated directly into your website, simple and reliable.",
   },
   {
-    icon: Zap,
-    title: "Performance & SEO‑Ready Builds",
-    desc: "Lightning‑fast load times and search‑engine‑optimised foundations so your site gets found and keeps visitors.",
+    icon: Cpu,
+    title: "AI Agents for Workflow Automation",
+    desc: "Automate repetitive tasks and streamline internal workflows to improve efficiency and response time.",
   },
 ];
 
@@ -44,6 +45,19 @@ const Services = () => (
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      {/* Pricing CTA */}
+      <div className="mx-auto mt-16 max-w-lg text-center">
+        <p className="text-lg font-semibold text-foreground">Every business is different.</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Pricing depends on your goals and requirements.
+        </p>
+        <Button size="lg" asChild className="mt-6 px-8">
+          <a href="https://wa.me/919606185669?text=Hi%20Pixelora%20Labs%2C%20I%27d%20like%20to%20know%20about%20pricing." target="_blank" rel="noopener noreferrer">
+            Get pricing on WhatsApp
+          </a>
+        </Button>
       </div>
     </div>
   </section>

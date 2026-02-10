@@ -4,7 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
+
+const WHATSAPP_URL = "https://wa.me/919606185669?text=Hi%20Pixelora%20Labs%2C%20I%27d%20like%20to%20discuss%20a%20project.";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -26,9 +28,12 @@ const Contact = () => {
         <p className="mb-2 text-center text-sm font-semibold uppercase tracking-widest text-primary">
           Get In Touch
         </p>
-        <h2 className="mx-auto mb-12 max-w-lg text-center text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-          Let's talk about your project
+        <h2 className="mx-auto mb-4 max-w-lg text-center text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          Tell us about your business
         </h2>
+        <p className="mx-auto mb-12 max-w-md text-center text-sm text-muted-foreground">
+          We'll help you figure out the right solution.
+        </p>
 
         <div className="mx-auto grid max-w-4xl gap-12 md:grid-cols-5">
           {/* Form */}
@@ -52,29 +57,28 @@ const Contact = () => {
 
           {/* Sidebar */}
           <div className="flex flex-col justify-center gap-6 md:col-span-2">
-            <div className="flex items-start gap-3">
-              <Mail className="mt-0.5 h-5 w-5 text-primary" />
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4 transition-colors hover:bg-primary/10"
+            >
+              <MessageCircle className="h-5 w-5 text-primary" />
               <div>
-                <p className="text-sm font-medium text-foreground">Email us</p>
-                <a href="mailto:hello@pixeloralabs.com" className="text-sm text-muted-foreground hover:text-primary">
-                  hello@pixeloralabs.com
-                </a>
+                <p className="text-sm font-semibold text-foreground">WhatsApp</p>
+                <p className="text-xs text-muted-foreground">+91 9606185669</p>
               </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-5 w-5 text-primary" />
+            </a>
+            <a
+              href="mailto:pixeloralabs@gmail.com"
+              className="flex items-center gap-3 rounded-lg border border-border/60 p-4 transition-colors hover:bg-muted"
+            >
+              <Mail className="h-5 w-5 text-muted-foreground" />
               <div>
-                <p className="text-sm font-medium text-foreground">WhatsApp</p>
-                <a
-                  href="https://wa.me/1234567890"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-primary"
-                >
-                  Chat with us
-                </a>
+                <p className="text-sm font-medium text-foreground">Email</p>
+                <p className="text-xs text-muted-foreground">pixeloralabs@gmail.com</p>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
