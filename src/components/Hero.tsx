@@ -10,9 +10,19 @@ const Hero = () => (
       background: "linear-gradient(160deg, hsl(220 20% 8%) 0%, hsl(180 30% 10%) 50%, hsl(220 20% 8%) 100%)",
     }}
   >
-    {/* Teal glow behind headline */}
-    <div className="pointer-events-none absolute top-1/2 left-1/2 h-[500px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-[140px]" style={{ background: "radial-gradient(circle, hsl(174 62% 42% / 0.5), transparent 70%)" }} />
-    <div className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[400px] rounded-full opacity-20 blur-[120px]" style={{ background: "hsl(174 62% 42% / 0.3)" }} />
+    {/* Animated teal glow */}
+    <motion.div
+      animate={{ scale: [1, 1.08, 1], opacity: [0.25, 0.35, 0.25] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      className="pointer-events-none absolute top-1/2 left-1/2 h-[500px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[140px]"
+      style={{ background: "radial-gradient(circle, hsl(174 62% 42% / 0.5), transparent 70%)" }}
+    />
+    <motion.div
+      animate={{ scale: [1, 1.12, 1], opacity: [0.15, 0.25, 0.15] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[400px] rounded-full blur-[120px]"
+      style={{ background: "hsl(174 62% 42% / 0.3)" }}
+    />
     <div className="pointer-events-none absolute top-0 right-0 h-[250px] w-[350px] rounded-full opacity-15 blur-[100px]" style={{ background: "hsl(174 62% 50% / 0.25)" }} />
 
     <div className="container relative z-10 mx-auto px-4 py-24 md:px-8 md:py-32">
@@ -60,7 +70,7 @@ const Hero = () => (
           <Button
             size="lg"
             asChild
-            className="rounded-lg px-8 py-6 text-base font-semibold shadow-lg shadow-primary/20"
+            className="rounded-lg px-8 py-6 text-base font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
           >
             <a href="#contact">
               Get a free website consultation
@@ -69,7 +79,7 @@ const Hero = () => (
           </Button>
           <a
             href="#services"
-            className="text-sm font-medium transition-colors hover:underline"
+            className="text-sm font-medium transition-colors duration-300 hover:underline"
             style={{ color: "hsl(174 35% 55%)" }}
           >
             View our work →
