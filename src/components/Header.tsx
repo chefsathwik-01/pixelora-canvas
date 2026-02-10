@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 
+const WHATSAPP_URL = "https://wa.me/919606185669?text=Hi%20Pixelora%20Labs%2C%20I%27d%20like%20a%20free%20consultation.";
+
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
